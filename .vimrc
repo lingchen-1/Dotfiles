@@ -86,3 +86,10 @@ inoremap <Left>  <ESC>:echoe "Use h"<CR>
 inoremap <Right> <ESC>:echoe "Use l"<CR>
 inoremap <Up>    <ESC>:echoe "Use k"<CR>
 inoremap <Down>  <ESC>:echoe "Use j"<CR>
+
+
+" Diable auto put comment header when pressing Enter
+" Enable auto put comment header when press o or O in normal mode
+" set formatoptions-=r
+" set formatoptions+=o
+au FileType * set fo-=r fo+=o
