@@ -93,3 +93,6 @@ inoremap <Down>  <ESC>:echoe "Use j"<CR>
 " set formatoptions-=r
 " set formatoptions+=o
 au FileType * set fo-=r fo+=o
+
+" Complete brackets automatically
+inoremap { {<CR>}<Esc>ko
