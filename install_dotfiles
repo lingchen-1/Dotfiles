@@ -5,22 +5,19 @@
 dotfiles_dir=~/Documents/Dotfiles
 
 # List of dotfiles to symlink
-declare -a files_to_symlink=(".vimrc" ".tmux.conf")
+declare -a files_to_symlink=(".vimrc" ".tmux.conf" ".condarc")
 
 # Loop through the list and create symlinks
 for file in "${files_to_symlink[@]}"; do
-        # Destination path for the symlink
-            dest=~/$(basename "$file")
+  # Destination path for the symlink
+  dest=~/$(basename "$file")
 
-                # Remove the existing file if it's not a symlink
-                    [ ! -L "$dest" ] && [ -f "$dest" ] && rm "$dest"
+  # Remove the existing file if it's not a symlink
+  [ ! -L "$dest" ] && [ -f "$dest" ] && rm "$dest"
 
-                        # Create the symlink
-                            ln -s "$dotfiles_dir/$file" "$dest"
-                                echo "Symlink created for $file"
-                            done
+  # Create the symlink
+  ln -s "$dotfiles_dir/$file" "$dest"
+  echo "Symlink created for $file"
+done
 
-                            echo "All dotfiles have been symlinked."
-
-
-
+echo "All dotfiles have been symlinked."
