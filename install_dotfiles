@@ -20,7 +20,21 @@ for file in "${files_to_symlink[@]}"; do
     ln -s "$dotfiles_dir/$file" "$dest"
     echo "Symlink created for $file"
   fi
-
 done
 
-echo "All dotfiles have been processed."
+# Setup Neovim configuration
+nvim_config_dir="$dotfiles_dir/nvim"
+nvim_dest=~/.config/nvim
+
+# Check if the Neovim configuration destination directory exists
+if [ -e "$nvim_dest" ] || [ -L "$nvim_dest" ]; then
+  # Directory or symlink exists
+  echo "Warning: $nvim_dest already exists. Skipping..."
+else
+  # Copy the Neovim configuration
+  echo "Copying Neovim configuration to ~/.config/nvim..."
+  mkdir -p "$nvim_dest"
+  cp -r "$nvim_config_dir"/* "$nvim_dest"
+fi
+
+echo "All configurations have been processed."
